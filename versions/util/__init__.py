@@ -1,7 +1,5 @@
-import datetime
-
-from django.utils.timezone import utc
+from django.utils import timezone
 
 
 def get_utc_now():
-    return datetime.datetime.utcnow().replace(tzinfo=utc)
+    return timezone.now()
