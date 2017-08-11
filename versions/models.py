@@ -34,10 +34,6 @@ from versions.settings import get_versioned_delete_collector_class, settings as 
 from versions.util import get_utc_now
 
 
-def get_utc_now():
-    return datetime.datetime.utcnow().replace(tzinfo=utc)
-
-
 def validate_uuid(uuid_obj):
     """
     Check that the UUID object is in fact a valid version 4 uuid.
