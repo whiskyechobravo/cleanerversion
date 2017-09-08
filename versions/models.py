@@ -527,21 +527,21 @@ class Versionable(models.Model):
         id = models.CharField(max_length=36, primary_key=True)
 
     if versions_settings.VERSIONS_USE_UUIDFIELD:
-        identity = models.UUIDField()
+        identity = models.UUIDField(db_index=True)
         """identity is used as the identifier of an object, ignoring its versions; sometimes also referenced as the natural key"""
     else:
-        identity = models.CharField(max_length=36)
+        identity = models.CharField(max_length=36, db_index=True)
         """identity is used as the identifier of an object, ignoring its versions; sometimes also referenced as the natural key"""
 
-    version_start_date = models.DateTimeField()
+    version_start_date = models.DateTimeField(db_index=True)
     """version_start_date points the moment in time, when a version was created (ie. an versionable was cloned).
     This means, it points the start of a clone's validity period"""
 
-    version_end_date = models.DateTimeField(null=True, default=None, blank=True)
+    version_end_date = models.DateTimeField(null=True, default=None, blank=True, db_index=True)
     """version_end_date, if set, points the moment in time, when the entry was duplicated (ie. the entry was cloned). It
     points therefore the end of a clone's validity period"""
 
-    version_birth_date = models.DateTimeField()
+    version_birth_date = models.DateTimeField(db_index=True)
     """version_birth_date contains the timestamp pointing to when the versionable has been created (independent of any
     version); This timestamp is bound to an identity"""
 
